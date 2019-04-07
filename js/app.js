@@ -283,8 +283,7 @@ $(() => {
         
             mediaRecorder.onstop = function(evt) {
                 
-                const blob = new Blob(chunks, { 'type' : 'audio/wave' });
-
+                const blob = new Blob(chunks, { 'type' : 'arraybuffer' });
                 
                 let track = new SoundTrack(audioCtx);
                 reader.onload = (e) => {
