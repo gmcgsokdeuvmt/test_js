@@ -42,8 +42,6 @@ $(() => {
         }
 
         generateDOM() {
-            alert('3');        
-            
             const div = $('<div>')
                 .attr('id','track');
             
@@ -80,7 +78,6 @@ $(() => {
             stopButton[0].addEventListener("click",(e) => this.onClickStop(e), false);
             muteButton[0].addEventListener("click",(e) => this.onClickMute(e), false);
             volumeRange.on('input', e => this.onInputVolume(e));
-            alert('4');
             return div;
         }
 
@@ -100,9 +97,9 @@ $(() => {
             }, 600);
 
             osc.connect(gain)
-                .connect(this.volumeNode)
-                .connect(this.muteNode)
-                .connect(this.audioCtx.destination);
+            gain.connect(this.volumeNode)
+            this.volumeNode.connect(this.muteNode)
+            this.muteNode.connect(this.audioCtx.destination);
             osc.start(0);
             this.osc = osc;
         }
@@ -136,7 +133,6 @@ $(() => {
             this.source = null;     
             this.audioBuffer = null;    
 
-            alert('b');
 
             this.volumeNode = this.audioCtx.createGain();
             this.volumeNode.gain.setValueAtTime(this.volume / 100, this.audioCtx.currentTime);
@@ -155,12 +151,10 @@ $(() => {
             this.muteNode = this.audioCtx.createGain();
             this.muteNode.gain.setValueAtTime(this.isMuted ? 0: 1, this.audioCtx.currentTime);
 
-            alert('a');
 
         }
 
         generateDOM() {
-            alert('..');
             const div = $('<div>')
                 .attr('id','track');
             
@@ -213,7 +207,6 @@ $(() => {
             muteButton[0].addEventListener("click",(e) => this.onClickMute(e), false);
             volumeRange.on('input', e => this.onInputVolume(e));
             panRange.on('input', e => this.onInputPan(e));
-            alert('...');
             return div;
         }
 
@@ -235,25 +228,15 @@ $(() => {
         }
 
         onClickPlay() {
-            alert(this.volumeNode)
-            alert(this.panNode)
-            alert(this.muteNode)
             const source = this.audioCtx.createBufferSource();
-            alert('play!')
             
             source.buffer = this.audioBuffer;
-            alert('play!')
-            source.connect(this.volumeNode)
-            alert('play!')
-            this.volumeNode.connect(this.panNode)
-            alert('play!')
-            this.panNode.connect(this.muteNode)
-            alert('play!')
+            source.connect(this.volumeNode);
+            this.volumeNode.connect(this.panNode);
+            this.panNode.connect(this.muteNode);
             this.muteNode.connect(this.audioCtx.destination);
-            alert('play!')
             source.start();
             this.source = source;
-            alert('done!')
         }
 
         onClickStop() {
@@ -292,11 +275,10 @@ $(() => {
 
             mediaRecorder.start();
 
-            source
-                .connect(this.volumeNode)
-                .connect(this.panNode)
-                .connect(this.muteNode)
-                .connect(dest);
+            source.connect(this.volumeNode);
+            this.volumeNode.connect(this.panNode);
+            this.panNode.connect(this.muteNode);
+            this.muteNode.connect(dest);
 
             this.source = source;
             this.mediaRecorder = mediaRecorder;
@@ -327,15 +309,9 @@ $(() => {
     }
 
     function main() {
-        alert('1');        
         let track1 = new MetronomeTrack(audioCtx);
-        alert('2');                
         let track2 = new SoundTrack(audioCtx);
-        alert('5');  
         track2.setWhiteNoise();
-        alert('6');                
         container.append(track1.dom,track2.dom);
-        alert('7');
-        alert(container.html());    
     }
 });
