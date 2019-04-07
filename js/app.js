@@ -3,12 +3,15 @@ $(() => {
     let audioCtx = null;
     let userStream = null;
     function _handleSuccess(stream) {
-        $('#btn').on('click', () => {
-            audioCtx = new AudioContext();
-            userStream = stream;
-            $('#btn').addClass("off");
-            main();
-        });
+        $('#btn').bind( {
+                'touchstart mousedown': function(e) {
+                    audioCtx = new AudioContext();
+                    userStream = stream;
+                    $('#btn').addClass("off");
+                    main();
+                }
+            }
+        )
     }
 
     navigator.mediaDevices.getUserMedia({
