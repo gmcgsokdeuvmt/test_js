@@ -1,7 +1,6 @@
 $(() => {
 
     'use strict';
-    AudioContext = (window.AudioContext || window.webkitAudioContext);
     const container = $('#container');
     let audioCtx = null;
     let userStream = null;
@@ -10,7 +9,7 @@ $(() => {
     function _handleSuccess(stream) {
         btn.addEventListener("click", () => {
             alert(btn);            
-            audioCtx = new AudioContext();
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             userStream = stream;
             btn.classList.add("off");
             alert(btn);
