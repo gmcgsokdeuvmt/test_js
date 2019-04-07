@@ -236,7 +236,9 @@ $(() => {
         }
 
         onClickPlay() {
-            alert(this.audioCtx.destination)
+            alert(this.volumeNode)
+            alert(this.panNode)
+            alert(this.muteNode)
             const source = this.audioCtx.createBufferSource();
             alert('play!')
             
