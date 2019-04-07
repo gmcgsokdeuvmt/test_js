@@ -42,6 +42,8 @@ $(function() {
         }
 
         generateDOM() {
+            alert('3');        
+            
             const div = $('<div>')
                 .attr('id','track');
             
@@ -78,7 +80,7 @@ $(function() {
             stopButton.click((e) => this.onClickStop(e));
             muteButton.click((e) => this.onClickMute(e));
             volumeRange.on('input', e => this.onInputVolume(e));
-            alert(div);
+            alert('4');
             return div;
         }
 
@@ -297,7 +299,9 @@ $(function() {
     }
 
     function main() {
+        alert('1');        
         let track1 = new MetronomeTrack(audioCtx);
+        alert('2');                
         let track2 = new SoundTrack(audioCtx);
         track2.setWhiteNoise();
         container.append(track1.dom,track2.dom);
