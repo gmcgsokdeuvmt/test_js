@@ -12,6 +12,7 @@ $(() => {
             audioCtx = new AudioContext();
             userStream = stream;
             btn.classList.add("off");
+            console.log(btn);
             main();
         }, false);
     }
