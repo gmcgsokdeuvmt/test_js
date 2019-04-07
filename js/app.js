@@ -238,12 +238,16 @@ $(() => {
         onClickPlay() {
             alert('play!')
             const source = this.audioCtx.createBufferSource();
+            alert('play!')
+            
             source.buffer = this.audioBuffer;
+            alert('play!')
             source
                 .connect(this.volumeNode)
                 .connect(this.panNode)
                 .connect(this.muteNode)
                 .connect(this.audioCtx.destination);
+            alert('play!')
             source.start();
             this.source = source;
             alert('done!')
