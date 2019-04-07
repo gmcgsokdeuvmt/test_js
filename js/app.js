@@ -284,15 +284,17 @@ $(() => {
             mediaRecorder.onstop = function(evt) {
                 
                 const blob = new Blob(chunks, { 'type' : 'arraybuffer' });
-                
+                alert(blob);
                 let track = new SoundTrack(audioCtx);
                 reader.onload = (e) => {
                     let arrayBuffer = e.target.result;
+                    alert(e.target.result);
                     audioCtx.decodeAudioData(arrayBuffer).then((decodedData) =>
                         {
                             track.setAudioBuffer(decodedData);
+                            alert(decodedData);
                         }
-                    ).catch(_handleError);
+                    );
                 };
                 reader.readAsArrayBuffer(blob)
                 container.append(track.dom);
