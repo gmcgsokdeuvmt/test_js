@@ -9,6 +9,12 @@ $(() => {
             $('#btn').addClass("off");
             main();
         });
+        $('#btn').on('tap', () => {
+            audioCtx = new AudioContext();
+            userStream = stream;
+            $('#btn').addClass("off");
+            main();
+        });
     }
 
     navigator.mediaDevices.getUserMedia({
