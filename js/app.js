@@ -304,6 +304,9 @@ $(() => {
         alert('2');                
         let track2 = new SoundTrack(audioCtx);
         track2.setWhiteNoise();
+        alert('5');                
         container.append(track1.dom,track2.dom);
+        alert('6');
+        console.log(container.html());    
     }
 });
