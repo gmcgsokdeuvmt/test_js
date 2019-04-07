@@ -4,6 +4,14 @@ $(() => {
     const container = $("#container");
     let audioCtx = null;
     let userStream = null;
+    // Check if MediaRecorder available.
+    if (!window.MediaRecorder) {
+        window.MediaRecorder = OpusMediaRecorder;
+    }
+    // Check if a target format (e.g. audio/ogg) is supported.
+    else if (!window.MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')) {
+        window.MediaRecorder = OpusMediaRecorder;
+    }
 
     const btn = document.getElementById("btn");
     function _handleSuccess(stream) {
@@ -259,10 +267,7 @@ $(() => {
 
         record(stream) {
             const source = this.audioCtx.createMediaStreamSource(stream)
-            alert('a');
-            alert(MediaRecorder);
             const dest = audioCtx.createMediaStreamDestination();
-            alert(MediaRecorder);
             const mediaRecorder = new MediaRecorder(dest.stream);
             const chunks = [];
 
