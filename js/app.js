@@ -13,7 +13,6 @@ $(() => {
             userStream = stream;
             btn.classList.add("off");
             main();
-            _handleClick(stream);
         }, false);
     }
 
