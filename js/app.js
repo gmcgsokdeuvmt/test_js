@@ -1,4 +1,4 @@
-$(function() {
+$(() => {
 
     'use strict';
     const container = $("container");
