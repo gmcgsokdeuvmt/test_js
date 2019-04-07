@@ -76,9 +76,9 @@ $(() => {
                 volumeRange
             );
 
-            playButton.click((e) => this.onClickPlay(e));
-            stopButton.click((e) => this.onClickStop(e));
-            muteButton.click((e) => this.onClickMute(e));
+            playButton[0].addEventListener("click",(e) => this.onClickPlay(e));
+            stopButton[0].addEventListener("click",(e) => this.onClickStop(e));
+            muteButton[0].addEventListener("click",(e) => this.onClickMute(e));
             volumeRange.on('input', e => this.onInputVolume(e));
             alert('4');
             return div;
@@ -208,10 +208,10 @@ $(() => {
                 panRange
             );
 
-            playButton.on('input', (e) => this.onClickPlay(e));
-            stopButton.on('input',(e) => this.onClickStop(e));
-            recButton.on('input',(e) => this.onClickRec(e));
-            muteButton.on('input',(e) => this.onClickMute(e));
+            playButton[0].addEventListener("click",(e) => this.onClickPlay(e));
+            stopButton[0].addEventListener("click",(e) => this.onClickStop(e));
+            recButton[0].addEventListener("click",(e) => this.onClickRec(e));
+            muteButton[0].addEventListener("click",(e) => this.onClickMute(e));
             volumeRange.on('input', e => this.onInputVolume(e));
             panRange.on('input', e => this.onInputPan(e));
             alert('...');
