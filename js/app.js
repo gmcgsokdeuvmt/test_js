@@ -104,12 +104,12 @@ $(() => {
                 .connect(this.volumeNode)
                 .connect(this.muteNode)
                 .connect(this.audioCtx.destination);
-            osc.start();
+            osc.start(0);
             this.osc = osc;
         }
 
         onClickStop() {
-            this.osc.stop();
+            this.osc.stop(0);
             clearInterval(this.gainTimer);
         }
 
