@@ -1,18 +1,26 @@
 $(() => {
+
+    'use strict';
+
     const container = $('#container');
     let audioCtx = null;
     let userStream = null;
+
+    const btn = document.getElementById("btn");
     function _handleSuccess(stream) {
-        $('#btn').bind( {
+        btn.addEventListener("click", () => {
+            alert('touch!');
+            audioCtx = new AudioContext();
+            userStream = stream;
+            $('#btn').addClass("off");
+            main();
+        }, false);
+        /*$('#btn').bind( {
                 'touchstart mousedown': function(e) {
-                    alert('touch!');
-                    audioCtx = new AudioContext();
-                    userStream = stream;
-                    $('#btn').addClass("off");
-                    main();
+                    
                 }
             }
-        )
+        )*/
     }
 
     navigator.mediaDevices.getUserMedia({
