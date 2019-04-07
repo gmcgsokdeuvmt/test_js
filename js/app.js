@@ -303,10 +303,11 @@ $(() => {
         let track1 = new MetronomeTrack(audioCtx);
         alert('2');                
         let track2 = new SoundTrack(audioCtx);
+        alert('5');  
         track2.setWhiteNoise();
-        alert('5');                
+        alert('6');                
         container.append(track1.dom,track2.dom);
-        alert('6');
+        alert('7');
         alert(container.html());    
     }
 });
