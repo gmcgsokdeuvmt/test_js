@@ -208,10 +208,10 @@ $(() => {
                 panRange
             );
 
-            playButton.click((e) => this.onClickPlay(e));
-            stopButton.click((e) => this.onClickStop(e));
-            recButton.click((e) => this.onClickRec(e));
-            muteButton.click((e) => this.onClickMute(e));
+            playButton.on('input', (e) => this.onClickPlay(e));
+            stopButton.on('input',(e) => this.onClickStop(e));
+            recButton.on('input',(e) => this.onClickRec(e));
+            muteButton.on('input',(e) => this.onClickMute(e));
             volumeRange.on('input', e => this.onInputVolume(e));
             panRange.on('input', e => this.onInputPan(e));
             alert('...');
