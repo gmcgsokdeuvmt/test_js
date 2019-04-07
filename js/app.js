@@ -269,7 +269,7 @@ $(() => {
             };
         
             mediaRecorder.onstop = function(evt) {
-                const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
+                const blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=pcm' });
                 const url = URL.createObjectURL(blob);
 
                 const audio = $('<audio>')
