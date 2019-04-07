@@ -9,6 +9,7 @@ $(() => {
     const btn = document.getElementById("btn");
     function _handleSuccess(stream) {
         btn.addEventListener("click", () => {
+            alert(btn);            
             audioCtx = new AudioContext();
             userStream = stream;
             btn.classList.add("off");
