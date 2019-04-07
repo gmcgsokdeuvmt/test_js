@@ -99,8 +99,7 @@ $(() => {
                 gain.gain.linearRampToValueAtTime(0, now + 0.05);
             }, 600);
 
-            osc
-                .connect(gain)
+            osc.connect(gain)
                 .connect(this.volumeNode)
                 .connect(this.muteNode)
                 .connect(this.audioCtx.destination);
@@ -244,8 +243,7 @@ $(() => {
             
             source.buffer = this.audioBuffer;
             alert('play!')
-            source
-                .connect(this.volumeNode)
+            source.connect(this.volumeNode)
                 .connect(this.panNode)
                 .connect(this.muteNode)
                 .connect(this.audioCtx.destination);
