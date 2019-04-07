@@ -141,8 +141,17 @@ $(() => {
 
             this.volumeNode = this.audioCtx.createGain();
             this.volumeNode.gain.setValueAtTime(this.volume / 100, this.audioCtx.currentTime);
-            //this.panNode = this.audioCtx.createStereoPanner();
-            //this.panNode.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
+            if (this.audioCtx.createStereoPanner) {
+                var panner = this.audioCtx.createStereoPanner();
+                panner.pan.value = this.pan / 100;
+                panner.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
+                this.panNode = panner;
+            } else {
+                var panner = this.audioCtx.createPanner();
+                panner.panningModel = 'equalpower';
+                panner.setPosition(this.pan, 0, 1 - Math.abs(this.pan / 100));
+                this.panNode = panner;
+            }
             this.muteNode = this.audioCtx.createGain();
             this.muteNode.gain.setValueAtTime(this.isMuted ? 0: 1, this.audioCtx.currentTime);
 
@@ -299,7 +308,11 @@ $(() => {
 
         onInputPan(e) {
             this.pan = e.target.value;
-            this.panNode.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
+            if (this.audioCtx.createStereoPanner) {
+                this.panNode.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
+            } else {
+                this.panNode.setPosition(this.pan / 100, 0, 1 - Math.abs(this.pan / 100));
+            }
         }
     }
 
