@@ -307,7 +307,7 @@ $(() => {
             if (this.audioCtx.createStereoPanner) {
                 this.panNode.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
             } else {
-                this.panNode.setPosition(this.pan / 100, 0, 1 - Math.abs(this.pan / 100));
+                this.panNode.setPosition(0, this.pan / 100, 1 - Math.abs(this.pan / 100));
             }
         }
     }
