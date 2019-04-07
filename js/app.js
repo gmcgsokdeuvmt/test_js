@@ -147,6 +147,7 @@ $(() => {
         }
 
         generateDOM() {
+            alert('..');
             const div = $('<div>')
                 .attr('id','track');
             
@@ -199,7 +200,7 @@ $(() => {
             muteButton.click((e) => this.onClickMute(e));
             volumeRange.on('input', e => this.onInputVolume(e));
             panRange.on('input', e => this.onInputPan(e));
-
+            alert('...');
             return div;
         }
 
