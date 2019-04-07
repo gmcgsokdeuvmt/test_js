@@ -151,7 +151,6 @@ $(() => {
                 panner.panningModel = 'HRTF';
                 panner.setPosition(this.pan, 0, 1 - Math.abs(this.pan / 100));
                 this.panNode = panner;
-                alert('pan!')
             }
             this.muteNode = this.audioCtx.createGain();
             this.muteNode.gain.setValueAtTime(this.isMuted ? 0: 1, this.audioCtx.currentTime);
