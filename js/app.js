@@ -6,18 +6,15 @@ $(() => {
     let audioCtx = null;
     let userStream = null;
 
-    const btn = $('#btn');
+    const btn = document.getElementById("btn");
     function _handleSuccess(stream) {
-        btn.bind( {
-                'click': function(e) {
-                    alert('touch!');
-                    audioCtx = new AudioContext();
-                    userStream = stream;
-                    btn.addClass("off");
-                    main();
-                }
-            }
-        )
+        btn.addEventListener("click", () => {
+            audioCtx = new AudioContext();
+            userStream = stream;
+            btn.classList.add("off");
+            main();
+            _handleClick(stream);
+        }, false);
     }
 
     navigator.mediaDevices.getUserMedia({
