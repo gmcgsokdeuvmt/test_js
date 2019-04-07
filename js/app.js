@@ -1,7 +1,7 @@
 $(() => {
 
     'use strict';
-
+    AudioContext = window.AudioContext || window.webkitAudioContext;
     const container = $('#container');
     let audioCtx = null;
     let userStream = null;
