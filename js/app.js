@@ -263,6 +263,8 @@ $(() => {
             const mediaRecorder = new MediaRecorder(dest.stream);
             const chunks = [];
 
+            alert('play')
+
             mediaRecorder.ondataavailable = function(evt) {
                 chunks.push(evt.data);
             };
@@ -278,7 +280,7 @@ $(() => {
             };
 
             mediaRecorder.start();
-
+            alert('play')
             source.connect(this.volumeNode);
             this.volumeNode.connect(this.panNode);
             this.panNode.connect(this.muteNode);
@@ -286,6 +288,7 @@ $(() => {
 
             this.source = source;
             this.mediaRecorder = mediaRecorder;
+            alert('play')
         }
 
         stopRecord() {
