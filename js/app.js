@@ -4,12 +4,10 @@ $(() => {
     const container = $("#container");
     let audioCtx = null;
     let userStream = null;
+    const reader = new FileReader();
+
     // Check if MediaRecorder available.
     if (!window.MediaRecorder) {
-        window.MediaRecorder = OpusMediaRecorder;
-    }
-    // Check if a target format (e.g. audio/ogg) is supported.
-    else if (!window.MediaRecorder.isTypeSupported('audio/ogg;codecs=opus')) {
         window.MediaRecorder = OpusMediaRecorder;
     }
 
@@ -239,15 +237,23 @@ $(() => {
             
         }
 
+        setAudioBuffer(audioBuffer) {
+            this.audioBuffer = audioBuffer;
+        }
+
         onClickPlay() {
             const source = this.audioCtx.createBufferSource();
             
             source.buffer = this.audioBuffer;
+            console.log(source.buffer.getChannelData(0));
             source.connect(this.volumeNode);
             this.volumeNode.connect(this.panNode);
             this.panNode.connect(this.muteNode);
             this.muteNode.connect(this.audioCtx.destination);
             source.start();
+            source.onended = () => { 
+                this.muteNode.disconnect(this.audioCtx.destination);
+            }
             this.source = source;
         }
 
@@ -267,7 +273,7 @@ $(() => {
 
         record(stream) {
             const source = this.audioCtx.createMediaStreamSource(stream)
-            const dest = audioCtx.createMediaStreamDestination();
+            const dest = this.audioCtx.createMediaStreamDestination();
             const mediaRecorder = new MediaRecorder(dest.stream);
             const chunks = [];
 
@@ -276,13 +282,21 @@ $(() => {
             };
         
             mediaRecorder.onstop = function(evt) {
+                
                 const blob = new Blob(chunks, { 'type' : 'audio/wave' });
-                const url = URL.createObjectURL(blob);
 
-                const audio = $('<audio>')
-                    .attr('controls', '')
-                    .attr('src', url);
-                container.append(audio);
+                
+                let track = new SoundTrack(audioCtx);
+                reader.onload = (e) => {
+                    let arrayBuffer = e.target.result;
+                    audioCtx.decodeAudioData(arrayBuffer).then((decodedData) =>
+                        {
+                            track.setAudioBuffer(decodedData);
+                        }
+                    )
+                };
+                reader.readAsArrayBuffer(blob)
+                container.append(track.dom);
             };
 
             mediaRecorder.start();
