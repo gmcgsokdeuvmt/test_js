@@ -246,6 +246,7 @@ $(() => {
                 .connect(this.audioCtx.destination);
             source.start();
             this.source = source;
+            alert('done!')
         }
 
         onClickStop() {
