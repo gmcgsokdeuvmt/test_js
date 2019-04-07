@@ -28,7 +28,6 @@ $(() => {
         constructor(audioCtx) {
             this.audioCtx = audioCtx;
             this.isPlaying = false;
-            this.isStopping = false;
             this.isMuted = false;
             this.volume = 10;
             this.dom = this.generateDOM();       
@@ -82,31 +81,37 @@ $(() => {
         }
 
         onClickPlay() {
-            const osc = this.audioCtx.createOscillator();
-            const gain = this.audioCtx.createGain();
-            osc.frequency.value = 1200;
+            if (!this.isPlaying) {
+                const osc = this.audioCtx.createOscillator();
+                const gain = this.audioCtx.createGain();
+                osc.frequency.value = 1200;
 
-            const now = this.audioCtx.currentTime;
-                gain.gain.setValueAtTime(1, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.05);
-
-            this.gainTimer = setInterval(() => {
                 const now = this.audioCtx.currentTime;
-                gain.gain.setValueAtTime(1, now);
-                gain.gain.linearRampToValueAtTime(0, now + 0.05);
-            }, 600);
+                    gain.gain.setValueAtTime(1, now);
+                    gain.gain.linearRampToValueAtTime(0, now + 0.05);
 
-            osc.connect(gain)
-            gain.connect(this.volumeNode)
-            this.volumeNode.connect(this.muteNode)
-            this.muteNode.connect(this.audioCtx.destination);
-            osc.start(0);
-            this.osc = osc;
+                this.gainTimer = setInterval(() => {
+                    const now = this.audioCtx.currentTime;
+                    gain.gain.setValueAtTime(1, now);
+                    gain.gain.linearRampToValueAtTime(0, now + 0.05);
+                }, 600);
+
+                osc.connect(gain)
+                gain.connect(this.volumeNode)
+                this.volumeNode.connect(this.muteNode)
+                this.muteNode.connect(this.audioCtx.destination);
+                osc.start(0);
+                this.osc = osc;
+                this.isPlaying = true;
+            }
         }
 
         onClickStop() {
-            this.osc.stop(0);
-            clearInterval(this.gainTimer);
+            if (this.isPlaying) {
+                this.osc.stop(0);
+                clearInterval(this.gainTimer);
+                this.isPlaying = false;            
+            }
         }
 
         onClickMute() {
