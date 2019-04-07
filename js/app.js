@@ -6,21 +6,18 @@ $(() => {
     let audioCtx = null;
     let userStream = null;
 
-    const btn = document.getElementById("btn");
+    const btn = $('#btn');
     function _handleSuccess(stream) {
-        btn.addEventListener("click", () => {
-            alert('touch!');
-            audioCtx = new AudioContext();
-            userStream = stream;
-            $('#btn').addClass("off");
-            main();
-        }, false);
-        /*$('#btn').bind( {
-                'touchstart mousedown': function(e) {
-                    
+        btn.bind( {
+                'click': function(e) {
+                    alert('touch!');
+                    audioCtx = new AudioContext();
+                    userStream = stream;
+                    btn.addClass("off");
+                    main();
                 }
             }
-        )*/
+        )
     }
 
     navigator.mediaDevices.getUserMedia({
