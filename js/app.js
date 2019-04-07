@@ -148,7 +148,7 @@ $(() => {
                 this.panNode = panner;
             } else {
                 var panner = this.audioCtx.createPanner();
-                panner.panningModel = 'equalpower';
+                panner.panningModel = 'HRTF';
                 panner.setPosition(this.pan, 0, 1 - Math.abs(this.pan / 100));
                 this.panNode = panner;
                 alert('pan!')
