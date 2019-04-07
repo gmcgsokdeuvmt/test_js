@@ -1,7 +1,7 @@
 $(function() {
 
     'use strict';
-    const container = $('#container');
+    const container = document.getElementById("container");
     let audioCtx = null;
     let userStream = null;
 
@@ -78,7 +78,7 @@ $(function() {
             stopButton.click((e) => this.onClickStop(e));
             muteButton.click((e) => this.onClickMute(e));
             volumeRange.on('input', e => this.onInputVolume(e));
-
+            alert(div);
             return div;
         }
 
