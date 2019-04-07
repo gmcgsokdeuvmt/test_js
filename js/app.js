@@ -141,8 +141,8 @@ $(() => {
 
             this.volumeNode = this.audioCtx.createGain();
             this.volumeNode.gain.setValueAtTime(this.volume / 100, this.audioCtx.currentTime);
-            this.panNode = this.audioCtx.createStereoPanner();
-            this.panNode.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
+            //this.panNode = this.audioCtx.createStereoPanner();
+            //this.panNode.pan.setValueAtTime(this.pan / 100, this.audioCtx.currentTime);
             this.muteNode = this.audioCtx.createGain();
             this.muteNode.gain.setValueAtTime(this.isMuted ? 0: 1, this.audioCtx.currentTime);
 
