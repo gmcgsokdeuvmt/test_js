@@ -260,6 +260,7 @@ $(() => {
         record(stream) {
             const source = this.audioCtx.createMediaStreamSource(stream)
             const dest = audioCtx.createMediaStreamDestination();
+            alert(MediaRecorder);
             const mediaRecorder = new MediaRecorder(dest.stream);
             const chunks = [];
 
