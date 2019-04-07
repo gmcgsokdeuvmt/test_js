@@ -1,7 +1,7 @@
 $(function() {
 
     'use strict';
-    const container = document.getElementById("container");
+    const container = $("container");
     let audioCtx = null;
     let userStream = null;
 
