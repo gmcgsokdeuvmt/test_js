@@ -1,4 +1,4 @@
-$(() => {
+$(function() {
 
     'use strict';
     const container = $('#container');
@@ -8,11 +8,9 @@ $(() => {
     const btn = document.getElementById("btn");
     function _handleSuccess(stream) {
         btn.addEventListener("click", () => {
-            alert(btn);            
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             userStream = stream;
             btn.classList.add("off");
-            alert(btn);
             main();
         }, false);
     }
