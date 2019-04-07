@@ -3,7 +3,7 @@ $(() => {
     let audioCtx = null;
     let userStream = null;
     function _handleSuccess(stream) {
-        $('#btn').on('tap', () => {
+        $('#btn').on('click', () => {
             audioCtx = new AudioContext();
             userStream = stream;
             $('#btn').addClass("off");
