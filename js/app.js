@@ -292,7 +292,7 @@ $(() => {
                         {
                             track.setAudioBuffer(decodedData);
                         }
-                    )
+                    ).catch(_handleError);
                 };
                 reader.readAsArrayBuffer(blob)
                 container.append(track.dom);
