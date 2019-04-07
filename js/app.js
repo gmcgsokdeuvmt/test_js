@@ -236,7 +236,7 @@ $(() => {
         }
 
         onClickPlay() {
-            alert('play!')
+            alert(this.audioCtx.destination)
             const source = this.audioCtx.createBufferSource();
             alert('play!')
             
