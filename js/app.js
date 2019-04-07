@@ -1,7 +1,7 @@
 $(() => {
 
     'use strict';
-    const container = $("container");
+    const container = $("#container");
     let audioCtx = null;
     let userStream = null;
 
