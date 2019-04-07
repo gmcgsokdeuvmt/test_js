@@ -5,6 +5,7 @@ $(() => {
     function _handleSuccess(stream) {
         $('#btn').bind( {
                 'touchstart mousedown': function(e) {
+                    alert('touch!')
                     audioCtx = new AudioContext();
                     userStream = stream;
                     $('#btn').addClass("off");
